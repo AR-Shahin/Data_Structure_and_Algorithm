@@ -1,4 +1,5 @@
 #include<iostream>
+#include<stdlib.h>
 using namespace std;
 
 void initial();
@@ -7,6 +8,9 @@ void insertLast(int val);
 void insertAtPosition(int pos,int val);
 void display();
 int lengthOfList();
+void deleteFirstNode();
+void deleteLastNode();
+void deleteNodeByPosition(int pos);
 
 typedef struct Node{
     int data;
@@ -19,18 +23,18 @@ node *head;
 int main()
 {
     initial();
-    insertFirst(10);
+    insertLast(5);
+    insertLast(10);
     insertFirst(20);
+    insertLast(500);
+    insertLast(800);
+    insertLast(900);
+    insertLast(111);
     insertFirst(30);
-    insertFirst(40);
-    insertFirst(50);
-    insertFirst(60);
-    insertFirst(70);
-    insertFirst(80);
+    insertAtPosition(4,1);
     display();
     cout<<endl;
-    insertAtPosition(5,500);
-    cout<<endl;
+    deleteNodeByPosition(9);
      display();
     return 0;
 }
@@ -82,8 +86,13 @@ void insertLast(int val){
 }
 
 void insertAtPosition(int pos,int val){
+    int index =1;
     if(pos == 0){
-        cout<<"Position Can't be Zero!!";
+        cout<<"Position Can't be Zero!!\n";
+        return;
+    }
+    if(pos == 1){
+        insertFirst(val);
         return;
     }
     if(lengthOfList() < pos){
@@ -91,14 +100,69 @@ void insertAtPosition(int pos,int val){
     }else{
         node *temp,*newNode;
         temp = head;
-        if(i<pos){
+        while(index<pos-1){
             temp = temp->next;
-            i++;
+            index++;
         }
         newNode = new node;
         newNode->data = val;
         newNode->next = temp->next;
         temp->next = newNode;
-       // count++;
+        count++;
     }
+}
+
+void deleteFirstNode(){
+    if(head == 0){
+        cout<<"Empty List"<<endl;
+    }
+    node *temp;
+    temp = head;
+    head = head->next;
+    free(temp);
+}
+void deleteLastNode(){
+     if(head == 0){
+        cout<<"Empty List"<<endl;
+    }
+    node *temp,*prev;
+    temp = head;
+    while(temp->next != 0){
+            prev = temp;
+        temp = temp->next;
+    }
+    if(head == temp){
+        head = 0;
+    }else{
+        prev->next = 0;
+    }
+    free(temp);
+}
+void deleteNodeByPosition(int pos){
+    if(head == 0){
+        cout<<"Empty List"<<endl;
+        return;
+    }
+    if(pos> lengthOfList()){
+        cout<<"\nInvalid Position\n";
+        return;
+    }
+    if(pos == 1){
+        deleteFirstNode();
+        return;
+    }
+    int index = 1;
+    node *temp,*prevNode,*nextNode;
+    temp = head;
+    while(index < pos-1){
+        temp = temp->next;
+          //cout<<"t "<<temp->data;
+        index++;
+    }
+    prevNode = temp;
+    nextNode = prevNode->next;
+    temp->next = nextNode->next;
+    free(nextNode);
+
+
 }
