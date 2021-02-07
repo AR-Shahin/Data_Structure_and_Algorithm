@@ -1,0 +1,104 @@
+#include<iostream>
+using namespace std;
+
+void initial();
+void insertFirst(int val);
+void insertLast(int val);
+void insertAtPosition(int pos,int val);
+void display();
+int lengthOfList();
+
+typedef struct Node{
+    int data;
+    struct Node *next;
+}node;
+
+int count = 0,i=1;
+node *head;
+
+int main()
+{
+    initial();
+    insertFirst(10);
+    insertFirst(20);
+    insertFirst(30);
+    insertFirst(40);
+    insertFirst(50);
+    insertFirst(60);
+    insertFirst(70);
+    insertFirst(80);
+    display();
+    cout<<endl;
+    insertAtPosition(5,500);
+    cout<<endl;
+     display();
+    return 0;
+}
+
+void initial(){
+    head = 0;
+}
+int lengthOfList(){
+    return count;
+}
+void display(){
+    if (head == 0){
+        cout<<"Empty List"<<endl;
+    }else{
+        cout<<"Display : ";
+        node *temp;
+        temp = head;
+        while(temp != 0){
+            cout<<temp->data<<" ";
+            temp = temp->next;
+        }
+    }
+    cout<<endl;
+}
+void insertFirst(int val){
+    node *newNode;
+    newNode = new node;
+    newNode->data = val;
+    newNode->next = head;
+    head = newNode;
+    count++;
+}
+
+void insertLast(int val){
+    if(head == 0){
+        insertFirst(val);
+    }else{
+        node *newNode,*temp;
+        newNode = new node;
+        newNode->data = val;
+        newNode->next = 0;
+        temp = head;
+        while(temp->next !=0){
+            temp = temp->next;
+        }
+        temp->next = newNode;
+        count++;
+    }
+}
+
+void insertAtPosition(int pos,int val){
+    if(pos == 0){
+        cout<<"Position Can't be Zero!!";
+        return;
+    }
+    if(lengthOfList() < pos){
+        cout<<"Invalid Position!"<<endl;
+    }else{
+        node *temp,*newNode;
+        temp = head;
+        if(i<pos){
+            temp = temp->next;
+            i++;
+        }
+        newNode = new node;
+        newNode->data = val;
+        newNode->next = temp->next;
+        temp->next = newNode;
+       // count++;
+    }
+}
