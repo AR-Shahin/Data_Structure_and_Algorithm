@@ -2,20 +2,23 @@
 #include<stdlib.h>
 using namespace std;
 
+typedef struct Node{
+    int data;
+    struct Node *next;
+}node;
 void initial();
 void insertFirst(int val);
 void insertLast(int val);
-void insertAtPosition(int pos,int val);
+void insertAfterPosition(int pos,int val);
 void display();
 int lengthOfList();
 void deleteFirstNode();
 void deleteLastNode();
 void deleteNodeByPosition(int pos);
-
-typedef struct Node{
-    int data;
-    struct Node *next;
-}node;
+int searchNodePositionByValue(int val);
+node *getNodeByValue(int val);
+int getMaximumValue();
+void changeNodeValue(int oldVal, int newVal);
 
 int count = 0,i=1;
 node *head;
@@ -31,10 +34,10 @@ int main()
     insertLast(900);
     insertLast(111);
     insertFirst(30);
-    insertAtPosition(4,1);
     display();
     cout<<endl;
-    deleteNodeByPosition(9);
+   // deleteNodeByPosition(searchNodePositionByValue(getMaximumValue()));
+   changeNodeValue(getMaximumValue(),5000);
      display();
     return 0;
 }
@@ -85,7 +88,7 @@ void insertLast(int val){
     }
 }
 
-void insertAtPosition(int pos,int val){
+void insertAfterPosition(int pos,int val){
     int index =1;
     if(pos == 0){
         cout<<"Position Can't be Zero!!\n";
@@ -163,6 +166,54 @@ void deleteNodeByPosition(int pos){
     nextNode = prevNode->next;
     temp->next = nextNode->next;
     free(nextNode);
+}
 
+int searchNodePositionByValue(int val){
+    if(head == 0){
+        return -1;
+    }
+    node *temp;
+    int index = 1;
+    temp = head;
+    while(temp != 0){
+        if(temp->data == val){
+            return index;
+        }
+        else if(temp->next == 0){
+            return -2;//-2 for invalid input
+        }
+        index ++;
+        temp = temp->next;
+    }
+}
 
+int getMaximumValue(){
+    int max = INT_MIN;
+    node *temp;
+    temp = head;
+    while(temp != 0){
+        if(max < temp->data){
+            max = temp->data;
+        }
+        temp = temp->next;
+    }
+    return max;
+}
+node *getNodeByValue(int val){
+    node *temp;
+    int index = 1;
+    temp = head;
+    while(temp != 0){
+        if(temp->data == val){
+            return temp;
+        }
+        else if(temp->next == 0){
+            return NULL;//-2 for invalid input
+        }
+        index ++;
+        temp = temp->next;
+    }
+}
+void changeNodeValue(int oldVal, int newVal){
+   getNodeByValue(oldVal)->data = newVal;
 }
