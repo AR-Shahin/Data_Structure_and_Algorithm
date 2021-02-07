@@ -1,0 +1,51 @@
+
+#include<iostream>
+#include<math.h>
+using namespace std;
+int i =0;
+double func(double x)
+{
+    return (x*x*x) + (4*x*x) - 10;
+}
+void falsi_position(double a,double b)
+{
+    if(func(a)*func(b)<0)
+    {
+        double c;
+        while(i!=100){
+            c =  (((a*func(b))- (b*func(a)))/(func(b)-func(a)));;
+            if(func(c)==0.0)
+            {
+                break;
+            }else if(func(c)*func(a)<0){
+                b= c;
+            }else{
+                a = c;
+            }
+            i++;
+        }
+        cout<<"The root value is : "<<c<<endl;
+    }
+    else{
+        cout << "You have not assumed right a and b\n";
+    }
+}
+int main()
+{
+    double a,b;
+    cin>>a>>b;
+    falsi_position(a,b);
+    return 0;
+}
+/*
+#include<iostream>
+using namespace std;
+int main()
+{
+    double a,b,c,d,r;
+    cin>>a>>b>>c>>d;
+
+    r = (((a*d)- (b*c))/(d-c));
+    cout<<r;
+}
+*/

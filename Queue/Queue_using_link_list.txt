@@ -1,0 +1,89 @@
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+
+
+typedef struct Node{
+    int data;
+    struct Node *next;
+}node;
+
+node *front,*rear;
+
+void initial()
+{
+    front = rear = 0;
+}
+void enqueue(int x)
+{
+    node *newnode;
+    newnode = new node;
+    newnode->data = x;
+    newnode->next = 0;
+    if(front == 0 && rear == 0)
+    {
+        front = rear = newnode;
+    }
+    else{
+        rear->next = newnode;
+        rear = newnode;
+    }
+}
+
+void display()
+{
+    node *temp;
+    temp = front;
+    if(front == 0 && rear == 0)
+    {
+        cout<<"\nQueue is empty!";
+    }
+    else{
+        cout<<"\nQueue data : ";
+        while(temp!=0)
+        {
+            cout<<temp->data<<" ";
+            temp = temp->next;
+        }
+    }
+}
+void dequeue()
+{
+    node *temp;
+    temp = front;
+    if(front == 0 && rear == 0)
+    {
+        cout<<"\nQueue is empty";
+    }
+    int x = temp->data;
+    cout<<"\nDequeue data : "<<x;
+    front = temp->next;
+    free(temp);
+}
+void peak()
+{
+    if(front == 0 && rear == 0)
+    {
+        cout<<"\nQueue is empty";
+    }
+    else{
+        cout<<"\nPeak value is : "<<front->data;
+    }
+
+}
+int main()
+{
+    initial();
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    enqueue(40);
+    enqueue(50);
+    display();
+    dequeue();
+    dequeue();
+    enqueue(60);
+    peak();
+    display();
+    return 0;
+}

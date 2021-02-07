@@ -1,0 +1,76 @@
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+
+typedef struct Node{
+    int data;
+    struct Node *next;
+}node;
+
+node *top;
+void initial()
+{
+    top = 0;
+}
+void push(int x)
+{
+    node *newNode;
+    newNode = new node;
+    newNode->data = x;
+    newNode->next = top;
+    top = newNode;
+}
+
+void display()
+{
+    node *temp;
+    temp = top;
+    if(top==0)
+    {
+        cout<<"\nStack is empty!";
+    }
+    else{
+        cout<<"\nStack data : ";
+        while(temp!=0){
+            cout<<temp->data<<" ";
+            temp = temp->next;
+        }
+    }
+}
+
+void peak()
+{
+    if(top == 0)
+    {
+        cout<<"\nStack is empty";
+    }
+    cout<<"\nPeak is : "<<top->data;
+}
+
+int pop()
+{
+    if(top==0)
+    {
+        cout<<"\nStack is empty!";
+    }
+    node *temp;
+    temp = top;
+    cout<<"\nPop data is : "<<temp->data;
+    top = top->next;
+    free(temp);
+}
+int main()
+{
+    initial();
+    push(10);
+    push(20);
+    push(30);
+    push(40);
+    push(50);
+    display();
+    pop();
+    pop();
+    pop();
+    pop();
+    return 0;
+}

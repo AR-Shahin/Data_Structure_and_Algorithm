@@ -1,0 +1,77 @@
+#include<iostream>
+using namespace std;
+#define size 5
+
+int queue[size];
+
+int i,front,rear;
+
+void initial()
+{
+    front = rear = -1;
+}
+void enqueue(int val)
+{
+    if(front == -1 && rear == -1)
+    {
+        front = rear = 0;
+        queue[rear] = val;
+        cout<<"Successfully insert\n";
+    }
+    else if ((rear+1)%size == front)
+    {
+        cout<<"\nQueue is full";
+    }
+    else{
+        rear = (rear+1)%size;
+        queue[rear] = val;
+        cout<<"Successfully insert\n";
+    }
+}
+
+void display()
+{
+    if(front == -1 && rear == -1)
+    {
+        cout<<"\nQueue is empty";
+    }
+    else{
+        cout<<"\nQueue data : ";
+        int i = front;
+        while(i!=rear)
+        {
+            cout<<queue[i]<<" ";
+            i = (i+1)%size;
+        }
+        cout<<queue[rear];
+    }
+}
+
+void dequeue()
+{
+    if(front == -1 && rear == -1)
+    {
+        cout<<"\nQueue is empty";
+    }
+    else if(front == rear)
+    {
+        cout<<"\nDequeue data : ";
+        cout<<queue[front];
+        front = rear = -1;
+
+    }
+    else{
+        cout<<"\nDequeue data : ";
+        int x = queue[front];
+        cout<<x;
+        front = (front+1)%size;
+    }
+}
+using namespace std;
+int main()
+{
+    initial();
+    enqueue(10);
+
+    return 0;
+}

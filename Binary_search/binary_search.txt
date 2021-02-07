@@ -1,0 +1,68 @@
+#include<iostream>
+using namespace std;
+void display(int A[],int n)
+{
+    cout<<endl;
+    for(int i=0;i<n;i++)
+    {
+        cout<<A[i]<<" ";
+    }
+}
+void sort(int A[],int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        for(int j=i+1;j<n;j++)
+        {
+            if(A[i]>A[j])
+            {
+                int temp =A[i];
+                A[i] = A[j];
+                A[j] = temp;
+            }
+        }
+    }
+}
+int binary_search(int A[],int n,int val)
+{
+    int left,right,mid;
+    left = 0;
+    right = n-1;
+    while(left<=right)
+    {
+        mid = (left+right)/2;
+        if(A[mid]==val)
+        {
+           return mid;
+        }
+        else if(A[mid]<val)
+        {
+            left = mid +1 ;
+        }
+        else{
+            right = mid - 1;
+        }
+    }
+    return -1;
+}
+int main()
+{
+    int A[100],i,n;
+    cout<<"How many value Do you want ? ";
+    cin>>n;
+    for(i=0;i<n;i++)
+    {
+        cout<<"["<<i<<"] : ";
+        cin>>A[i];
+    }
+    sort(A,n);
+    cout<<"\nYour values are : ";
+    display(A,n);
+    int val;
+    cout<<"\nWhich value do you want to search ? ";
+    cin>>val;
+    int index =  binary_search(A,n,val);
+    cout<<index;
+   
+    return 0;
+}

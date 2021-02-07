@@ -1,0 +1,80 @@
+#include<iostream>
+using namespace std;
+
+typedef struct Node{
+    int data;
+    Node *left,*right;
+}node;
+
+
+node *create_node()
+{
+    int x;
+    node *newNode;
+    newNode = new node;
+    cout<<"Enter data ( -1 for no node ) : ";
+    cin>>x;
+    if(x== -1)
+    {
+        return 0;
+    }
+    else{
+        newNode->data = x;
+        cout<<"\nEnter left child of "<<x<<" , ";
+        newNode->left = create_node();
+        cout<<"\nEnter right child of "<<x<<" , ";
+        newNode->right = create_node();
+        return newNode;
+    }
+}
+
+void preOrder(node *root)
+{
+    if(root ==0 )
+    {
+        return ;
+    }
+       else{
+        cout<<" "<<root->data<<" ";
+        preOrder(root->left);
+        preOrder(root->right);
+    }
+
+}
+void inOrder(node *root)
+{
+    if(root == 0)
+    {
+        return ;
+    }
+    else{
+        inOrder(root->left);
+        cout<<" "<<root->data<<" ";
+        inOrder(root->right);
+    }
+}
+void postOrder(node *root)
+{
+    if(root==0)
+    {
+        return;
+    }
+    else{
+        postOrder(root->left);
+        postOrder(root->right);
+       cout<<" "<<root->data<<" ";
+    }
+}
+int main()
+{
+    node *root;
+    root = 0;
+    root = create_node();
+    cout<<"\nPreorder : ";
+    preOrder(root);
+    cout<<"\nInorder : ";
+    inOrder(root);
+    cout<<"\nPostorder : ";
+    postOrder(root);
+    return 0;
+}

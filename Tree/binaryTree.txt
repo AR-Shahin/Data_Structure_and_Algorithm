@@ -1,0 +1,80 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct treeNode{
+    int data;
+    struct treeNode *left,*right;
+}node;
+
+node *create_node()
+{
+    int x;
+    node *newNode;
+    newNode = (node*)malloc(sizeof(node));
+    printf("Enter root data (-1 for node) : ");
+    scanf("%d",&x);
+    if(x==-1)
+    {
+        return 0;
+    }
+    else{
+        newNode->data = x;
+    }
+    printf("\nEnter left child of %d !",x);
+    newNode->left = create_node();
+    printf("\nEnter right child of %d !",x);
+    newNode->right = create_node();
+    return newNode;
+}
+
+void preOrder(node *root)
+{
+    if(root ==0)
+    {
+        return ;
+    }
+    else{
+        printf(" %d ",root->data);
+        preOrder(root->left);
+        preOrder(root->right);
+    }
+}
+
+void inOrder(node *root)
+{
+    if(root==0)
+    {
+        return;
+    }
+    else{
+        inOrder(root->left);
+        printf(" %d ",root->data);
+        inOrder(root->right);
+    }
+}
+
+void postOrder(node *root)
+{
+    if(root==0)
+    {
+        return;
+    }
+    else{
+        postOrder(root->left);
+        postOrder(root->right);
+        printf(" %d ",root->data);
+    }
+}
+int main()
+{
+    node *root;
+    root = 0;
+    root = create_node();
+    printf("\nPreorder :");
+    preOrder(root);
+    printf("\nInorder :");
+    inOrder(root);
+    printf("\nPostorder :");
+    postOrder(root);
+    return 0;
+}

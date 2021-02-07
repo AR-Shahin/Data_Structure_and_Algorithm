@@ -1,0 +1,103 @@
+#include<stdio.h>
+
+// global decleration
+int stack[5];
+int top;
+int n;
+int cas;
+void inital()
+{
+    top = 0;
+}
+void success()
+{
+    printf("success code!!");
+}
+void failed()
+{
+    printf("failed code!!");
+}
+
+
+void push( int n)
+{
+    if(top>=n)
+    {
+        failed();
+    }
+    else
+    {
+    int val;
+    printf("\nenter value for push : ");
+    scanf("%d",&val);
+    stack[top] = val;
+    top ++;
+    success();
+    }
+}
+int pop()
+{
+    if(top==0)
+    {
+        failed();
+    }
+    else{
+        int temp = stack[top-1];
+        top--;
+        return temp;
+    }
+}
+void print_value()
+{
+    if(top != 0)
+    {
+        printf("\n\nstack values are:\n");
+        for(int i = top-1;i>=0;i--)
+        {
+            printf("%d\n",stack[i]);
+        }
+    }
+    else
+    {
+     printf("\nstack are empty!");
+    }
+}
+void pop_value()
+{
+     int x;
+    printf("\nHow many time do you want for pop ? ");
+    scanf("%d",&x);
+    if(n<x || x<0)
+    {
+        printf("\nwrong value for pop!!");
+    }
+    else{
+    for(int j = 0;j<x;j++)
+    {
+        printf("\npop value = %d\n",pop());
+    }
+    print_value();
+    }
+}
+void peak()
+{
+    int x = stack[top-1];
+    printf("\npeak = %d",x);
+}
+int main()
+{
+
+    inital();
+    printf("enter stack size : ");
+    scanf("%d",&n);
+    for(int i =0;i<n;i++)
+    {
+        push(n);
+    }
+    print_value();
+    peak();
+    pop_value();
+    peak();
+    printf("top = %d",top);
+    return 0;
+}

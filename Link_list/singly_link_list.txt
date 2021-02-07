@@ -1,0 +1,135 @@
+
+#include<stdio.h>
+#include<stdlib.h>
+#define sucess_value 999
+#define null_value -999
+typedef struct listNode{
+    int data;
+    struct listNode *next;
+}node;
+
+node *head;
+void initial()
+{
+    head = 0;
+}
+
+void insert(int val)
+{
+    node *newNode;
+    newNode = (node*) malloc(sizeof(node));
+    newNode->data = val;
+    newNode->next = head;
+    head = newNode;
+}
+
+void print_value()
+{
+    node *temp;
+    temp = head;
+    while(temp != NULL)
+    {
+        printf("%d ",temp->data);
+        temp = temp->next;
+    }
+}
+
+void print(node *x)
+{
+    if(x == 0)
+    {
+        printf("failed");
+    }
+    else{
+        printf("success");
+    }
+}
+node *search(int val)
+{
+
+    node *temp;
+    temp = head;
+    while(temp != 0)
+    {
+        if(temp->data == val)
+        {
+            return temp;
+        }
+        temp = temp->next;
+    }
+    return 0;
+}
+
+int delete_node(int val)
+{
+    node *temp,*prev;
+    temp = head;
+    if(temp!=NULL)
+        {
+            head = head->data;
+            free(temp);
+            return sucess_value;
+        }
+    while(temp != NULL)
+    {
+        if(temp->next->data == val)
+        {
+            prev = temp;
+            break;
+        }
+    temp = temp->next;
+    }
+    if(temp!= NULL)
+    {
+        temp = temp->next;
+        prev->next = temp->next;
+        free(temp);
+        return sucess_value;
+    }
+    return null_value;
+}
+int deleteItem(int item)
+{
+node *temp, *prev ;
+temp = head ; //start at the beginning
+while (temp != 0)
+{
+if (temp->data == item) break ;
+prev = temp;
+temp = temp->next ; //move to next node
+}
+if (temp == 0) return null_value ; //item not found to delete
+if (temp == head) //delete first node
+{
+head = head->next ;
+free(temp) ;
+}
+else
+{
+prev->next = temp->next ;
+free(temp);
+}
+return sucess_value;
+}
+int main()
+{
+    initial();
+    int n,a;
+    printf("Enter size How many value do you want ?? : ");
+    scanf("%d",&n);
+    for(int i=0;i<n;i++)
+    {
+        printf("Enter value : ");
+        scanf("%d",&a);
+        insert(a);
+    }
+    node *rtval;
+
+    print_value();
+    int val;
+    printf("\nEnter value for delete : ");
+    scanf("%d",&val);
+    delete_node(val);
+    print_value();
+    return 0;
+}

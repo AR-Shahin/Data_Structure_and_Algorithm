@@ -1,0 +1,83 @@
+#include<stdio.h>
+#define success_value 999
+#define null_value -999
+#define size 5
+int queue[size];
+int rear,front,n;
+
+void initialize()
+{
+    rear = front = -1;
+}
+
+void enqueue(int value)
+{
+    if(front ==-1 && rear == -1)
+    {
+        front = rear = 0;
+        queue[rear] = value;
+        printf("Successfully insert\n");
+    }
+    else if((rear+1)%size == front )
+    {
+        printf("\nQueue is full\n");
+    }
+    else{
+        rear = (rear +1)% size;
+        queue[rear] = value;
+        printf("Successfully insert\n");
+    }
+
+}
+
+void dequeue()
+{
+    if(front ==-1 && rear == -1)
+    {
+        printf("\nQueue is empty!\n");
+    }
+    else if(front == rear)
+    {
+        printf("%d",front);
+       front = rear = -1;
+
+    }
+    else{
+
+        int data = queue[front];
+        printf("\nFront value = %d\n",data);
+        front = (front+1)%size;
+    }
+}
+void display()
+{
+    if(rear == -1 && front == -1)
+    {
+        printf("\nQueue is empty!");
+    }
+    printf("\nQueues value : ");
+    int i = front;
+    while(i!= rear)
+    {
+        printf("%d ",queue[i]);
+        i = (i + 1)%size;
+    }
+    printf("%d",queue[rear]);
+}
+void peak()
+{
+    if(rear == -1 && front == -1)
+    {
+        printf("\nQueue is empty!\n");
+    }
+    printf("\nPeak value is = %d\n",queue[front]);
+}
+
+int main()
+{
+    initialize();
+enqueue(10);
+enqueue(20);
+
+    return 0;
+}

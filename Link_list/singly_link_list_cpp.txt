@@ -1,0 +1,146 @@
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+
+typedef struct Mynode{
+    int data;
+    struct Mynode *next;
+}node;
+
+node *head;
+void initial()
+{
+    head = 0;
+}
+void insert(int val)
+{
+    node *newNode;
+    newNode = new node;
+    newNode->data = val;
+    newNode->next = head;
+    head = newNode;
+}
+void display()
+{
+    if(head == 0)
+    {
+        cout<<"\nempty";
+    }
+    node *temp;
+    temp = head;
+    while(temp!=0)
+    {
+        cout<<temp->data<<" ";
+        temp = temp->next;
+    }
+}
+node *search(int val)
+{
+    if(head  == 0)
+    {
+        cout<<"\nempty";
+    }
+    node *temp;
+    temp = head;
+
+    while(temp!=0)
+    {
+        if(temp->data == val)
+        {
+            //cout<<"\nsucess we get this node : "<<temp->data;break;
+            return temp;
+        }
+        else if(temp->next == NULL )
+        {
+            cout<<"\ninvalid input";
+            return NULL;
+        }
+        temp= temp->next;
+    }
+}
+void change_value(int old_val ,int new_val)
+{
+    node *Node;
+    Node = search(old_val);
+    Node->data = new_val;
+    cout<<"\nAfter changing value : ";
+    display();
+}
+
+void count_node()
+{
+    node *temp;
+    int count = 0;
+    temp = head;
+    while(temp!=0)
+    {
+        count ++;
+        temp = temp->next;
+    }
+    cout<<"\nTotal node are : "<<count;
+}
+
+void deleteIteam(int item)
+{
+    node *temp, *prev ;
+    temp = head ; //start at the beginning
+    while (temp != 0)
+    {
+    if (temp->data == item) break ;
+    prev = temp;
+    temp = temp->next ; //move to next node
+    }
+    if (temp == 0) cout<<"\nNothing found!"; //item not found to delete
+    if (temp == head) //delete first node
+    {
+    head = head->next ;
+    free(temp) ;
+    }
+    else
+    {
+    prev->next = temp->next ;
+    free(temp);
+    }
+
+    cout<<"\nAfter deleting : "<<item<< endl;
+    display();
+}
+int maxValue(node *head)
+{
+    int max = INT_MIN;
+    node *temp;
+    temp = head;
+    while(temp!=0)
+    {
+        if(max < temp->data)
+        {
+            max = temp->data;
+        }
+        temp = temp->next;
+    }
+    return max;
+}
+int main()
+{
+    int x,y;
+    initial();
+    insert(10);
+    insert(20);
+    insert(30);
+    insert(40);
+    insert(50);
+    display();
+    cout<<endl;
+    cout<<"\nEnter old value : ";
+    cin>>x;
+    cout<<"\nEnter new value :";
+    cin>>y;
+    change_value(x,y);
+   int a =  maxValue(head);
+   deleteIteam(a);
+
+      return 0;
+}
+
+
+

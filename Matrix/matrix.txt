@@ -1,0 +1,57 @@
+#include<stdio.h>
+
+int ar[100][100];
+int main()
+{
+    int i,j,first = 0,second = 0,row,col;
+
+    printf("enter row size : ");
+    scanf("%d",&row);
+    printf("enter column size : ");
+    scanf("%d",&col);
+
+    if(row == col)
+    {
+        for(i=0;i<row;i++)
+        {
+            for(j=0;j<col;j++)
+            {
+                printf("[%d][%d] : ",i,j);
+                scanf("%d",&ar[i][j]);
+            }
+        }
+
+        printf("your matrix are :\n");
+        for(i=0;i<row;i++)
+        {
+            for(j=0;j<col;j++)
+            {
+                printf("%d ",ar[i][j]);
+            }
+            printf("\n");
+        }
+
+        for(i=0;i<row;i++)
+        {
+            first = first + ar[i][i];
+            second = second + ar[i][row-1-i];
+        }
+
+        printf("\nmain diagonal = %d",first);
+        printf("\noff diagonal = %d",second);
+
+        int sub = first - second;
+        if(sub>=0)
+        {
+            printf("\ndifference = %d",sub);
+        }
+        else{
+            printf("\ndifference = %d",-1*sub);
+        }
+
+    }
+    else{
+        printf("\nrow and col are not equal ...");
+    }
+    return 0;
+}
