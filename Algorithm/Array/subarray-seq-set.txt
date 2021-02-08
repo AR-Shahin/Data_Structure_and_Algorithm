@@ -1,0 +1,47 @@
+#include<iostream>
+using namespace std;
+void printSubArray(int A[],int start,int end);
+void findSubArray(int A[],int n);
+void findSubSequence(int A[],int n);
+void printAllSubSequences(int A[],int n,int currentIndex,int subSequence[],int currentSubSequenceIndex);
+void printSubSequenceArray(int A[],int n);
+int main(){
+
+    int A[] = {5,10,15};
+    int n = 3;
+    findSubSequence(A,n);
+    return 0;
+}
+
+void findSubArray(int A[],int n){
+    for(int i = 0;i<n;i++){
+        for(int j =i;j<n;j++){
+            printSubArray(A,i,j);
+        }
+    }
+}
+
+void printSubArray(int A[],int start,int end){
+    cout<<"{";
+    for(int i = start;i<=end;i++){
+        cout<<A[i]<<" ";
+    }
+    cout<<"}"<<endl;
+}
+void findSubSequence()
+void printAllSubSequences(int A[],int n,int currentIndex,int subSequence[],int currentSubSequenceIndex){
+    if(currentIndex>=n){
+        printSubSequenceArray(subSequence,currentSubSequenceIndex);
+        return;
+    }
+    printAllSubSequences(A,n,currentIndex + 1,subSequence,currentSubSequenceIndex+1);
+    subSequence[currentSubSequenceIndex] = A[currentIndex];
+    printAllSubSequences(A,n,currentIndex + 1,subSequence,currentSubSequenceIndex+1);
+}
+void printSubSequenceArray(int A[],int n){
+    cout<<"{";
+    for(int i = 0;i<=n;i++){
+        cout<<A[i]<<" ";
+    }
+    cout<<"}"<<endl;
+}

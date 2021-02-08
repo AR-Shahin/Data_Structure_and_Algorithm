@@ -1,0 +1,41 @@
+//Replace Every element with maximum value
+#include<iostream>
+using namespace std;
+void display(int A[],int n){
+    for(int i =0;i<n;i++){
+        cout<<A[i]<<" ";
+    }
+}
+void nonLinerMethod(int A[],int n){
+    for(int i = 0;i<n;i++){
+        int max = A[i];
+        for(int j = i+1;j<n;j++){
+            if(max < A[j]){
+                max = A[j];
+            }
+        }
+
+        if(max != A[i]){
+            A[i] = max;
+        }
+    }
+}
+
+void linearMethod(int A[],int n){
+    int right_max = A[n-1];
+    for(int i = n-2;i>=0;i--){
+        if(right_max > A[i]){
+            A[i] = right_max;
+        }else{
+            right_max = A[i];
+        }
+    }
+}
+int main()
+{
+    int A[] ={3,4,20,6,15,2,1,7};
+    int n = 8;
+    nonLinerMethod(A,n);
+    display(A,n);
+    return 0;
+}

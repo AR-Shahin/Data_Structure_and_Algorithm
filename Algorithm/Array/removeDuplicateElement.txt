@@ -1,0 +1,25 @@
+//Remove Duplicate Element
+#include<iostream>
+using namespace std;
+void display(int A[],int n){
+    for(int i =0;i<n;i++){
+        cout<<A[i]<<" ";
+    }
+}
+void removeDuplicateElement(int A[],int n){
+    int k = 0;
+    for(int i =0;i<n;i++){
+        if(A[i] != A[i+1]){
+            A[k] = A[i];
+            k++;
+        }
+    }
+    display(A,k);
+}
+int main()
+{
+    int A[] ={1,1,2,2,3,4};
+    int n = 6;
+    removeDuplicateElement(A,n);
+    return 0;
+}

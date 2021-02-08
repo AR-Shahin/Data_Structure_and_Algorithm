@@ -1,0 +1,47 @@
+//Merge two sorted Array
+#include<iostream>
+using namespace std;
+void display(int A[],int n){
+    for(int i =0;i<n;i++){
+        cout<<A[i]<<" ";
+    }
+}
+void mergeTwoArray(int A[],int B[],int a,int b){
+    int k =0,C[100],i;
+    for(i=0;i<a;i++){
+        C[k] = A[i];
+        k++;
+    }
+    for(i=0;i<b;i++){
+        C[k] = B[i];
+        k++;
+    }
+    display(C,k);
+}
+void mergeTwoArrayInSorted(int A[],int B[],int a,int b){
+    int C[100],i,j,k;
+    i = j = k = 0;
+    while(i<a && j<b){
+        if(A[i] < B[j]){
+            C[k] = A[i];
+            i++;k++;
+        }else{
+            C[k] = B[j];
+            j++;k++;
+        }
+    }
+    while(i<a){
+        C[k++] = A[i++];
+    }
+    while(j<b){
+        C[k++] = B[j++];
+    }
+    display(C,k);
+}
+int main()
+{
+    int A[] ={1,2,3,10,50};
+    int B[] ={4,5,60,80,90};
+        mergeTwoArrayInSorted(A,B,5,5);
+    return 0;
+}
