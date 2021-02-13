@@ -2,7 +2,6 @@
 #include<stdlib.h>
 using namespace std;
 
-
 typedef struct Node{
     int data;
     struct Node *next;
@@ -10,80 +9,79 @@ typedef struct Node{
 
 node *front,*rear;
 
-void initial()
-{
-    front = rear = 0;
-}
-void enqueue(int x)
-{
-    node *newnode;
-    newnode = new node;
-    newnode->data = x;
-    newnode->next = 0;
-    if(front == 0 && rear == 0)
-    {
-        front = rear = newnode;
-    }
-    else{
-        rear->next = newnode;
-        rear = newnode;
-    }
-}
+void initial();
+void display(node *top);
+void enqueue(int val);
+int dequeue();
+int peek(node *head);
+int sizeOfQueue(node *head);
 
-void display()
-{
-    node *temp;
-    temp = front;
-    if(front == 0 && rear == 0)
-    {
-        cout<<"\nQueue is empty!";
-    }
-    else{
-        cout<<"\nQueue data : ";
-        while(temp!=0)
-        {
-            cout<<temp->data<<" ";
-            temp = temp->next;
-        }
-    }
-}
-void dequeue()
-{
-    node *temp;
-    temp = front;
-    if(front == 0 && rear == 0)
-    {
-        cout<<"\nQueue is empty";
-    }
-    int x = temp->data;
-    cout<<"\nDequeue data : "<<x;
-    front = temp->next;
-    free(temp);
-}
-void peak()
-{
-    if(front == 0 && rear == 0)
-    {
-        cout<<"\nQueue is empty";
-    }
-    else{
-        cout<<"\nPeak value is : "<<front->data;
-    }
-
-}
-int main()
-{
+int main(){
     initial();
     enqueue(10);
+    cout<<endl<<"Peek data is -> "<<peek(front)<<endl;
     enqueue(20);
     enqueue(30);
-    enqueue(40);
-    enqueue(50);
-    display();
-    dequeue();
-    dequeue();
-    enqueue(60);
-    peak();
-    display();
+    enqueue(100);
+    display(front);
+    cout<<endl<<"dequeue data is -> "<<dequeue()<<endl;
+    enqueue(500);
+    display(front);
+    cout<<endl<<"Peek data is -> "<<peek(front)<<endl;
+    cout<<endl<<"sizeOfQueue -> "<<sizeOfQueue(front)<<endl;
     return 0;
+}
+
+void display(node *top){
+    node *temp = top;
+    if(top == 0){
+        cout<<"\nEmpty Queue!\n";
+        return;
+    }
+    while(temp != 0){
+        cout<<temp->data<<" ";
+        temp = temp->next;
+    }
+}
+void initial(){
+    front = rear = 0;
+}
+void enqueue(int val){
+    node *newNode;
+    newNode = new node;
+    newNode->data = val;
+    newNode->next = 0;
+    if(front == 0 && rear == 0){
+        front = rear =  newNode;
+    }else{
+        rear->next = newNode;
+        rear = rear->next;
+    }
+}
+int dequeue(){
+    if(front == 0 && rear == 0){
+        cout<<"\nEmpty Queue!\n";
+        return -9999;
+    }
+    int data = front->data;
+    node *temp = front;
+    front = front->next;
+    free(temp);
+    return data;
+}
+int peek(node *head){
+    if(front == 0 && rear == 0){
+        cout<<"\nEmpty Queue!\n";
+        return -9999;
+    }
+    return front->data;
+}
+int sizeOfQueue(node *head){
+    node *temp = head;
+    int count = 0;
+    while(temp!=0){
+        count ++;
+        temp = temp->next;
+    }
+    return count;
 }
