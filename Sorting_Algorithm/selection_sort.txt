@@ -1,0 +1,37 @@
+#include<iostream>
+using namespace std;
+int i,j;
+void display(int D[],int n){
+    cout<<endl;
+    for(i=0;i<n;i++){
+        cout<<D[i]<<" ";
+    }
+    cout<<endl;
+}
+void selection_sort(int S[],int n){
+    int temp , min_index;
+    for(i=0;i<n;i++){
+        min_index = i;
+        for(j=i+1;j<n;j++){
+            if(S[j] < S[min_index]){
+                min_index = j;
+            }
+        }
+        if(i != min_index){
+            temp = S[i];
+            S[i] = S[min_index];
+            S[min_index] = temp;
+        }
+    }
+}
+int main()
+{
+    int A[] = {8,7,5,9,4,6,1,3,2,10};
+    int n = sizeof(A)/sizeof(A[0]);
+    cout<<"Before Sort : ";
+    display(A,n);
+    selection_sort(A,n);
+     cout<<"After Sort : ";
+    display(A,n);
+    return 0;
+}
