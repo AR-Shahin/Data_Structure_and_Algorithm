@@ -123,6 +123,61 @@ void reverseDisplay()
         temp = temp->prev;
     }
 }
+
+void deleteFirst()
+{
+    node *temp;
+    temp = head;
+    head = head->next;
+    free(temp);
+    count--;
+    return;
+}
+
+void deleteLast()
+{
+    if (head == tail)
+    {
+        deleteFirst();
+        return;
+    }
+    node *temp;
+    temp = tail;
+    tail = tail->prev;
+    tail->next = NULL;
+    free(temp);
+    count--;
+    return;
+}
+void deleteAtPosition(int pos)
+{
+    if (pos == 1)
+    {
+        deleteFirst();
+        return;
+    }
+
+    if (pos == lengthOfList())
+    {
+        deleteLast();
+        return;
+    }
+
+    int index = 1;
+    node *temp = head;
+
+    while (index < pos)
+    {
+        temp = temp->next;
+        index++;
+    }
+    temp->prev->next = temp->next;
+    temp->next->prev = temp->prev;
+
+    free(temp);
+    count--;
+}
+
 int main()
 {
     initial();
@@ -130,21 +185,17 @@ int main()
     insertFirst(20);
     insertFirst(30);
     insertFirst(40);
-    // // insertFirst(50);
-    // insertLast(10);
-    // insertLast(50);
-    // insertLast(60);
-    // insertFirst(200);
-    // reverseDisplay();
-    display();
-    reverseDisplay();
-    cout << endl;
-    insertAtPosition(3, 500);
-    insertAtPosition(3, 5200);
 
-    insertAtPosition(4, 1000);
     display();
-    reverseDisplay();
+    // deleteFirst();
+    // insertLast(50);
+    // deleteLast();
+    // deleteLast();
+    deleteAtPosition(3);
+    deleteAtPosition(2);
+    insertLast(500);
+    display();
+    // reverseDisplay();
 
     return 0;
 }
