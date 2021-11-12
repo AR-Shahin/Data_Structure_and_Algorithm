@@ -1,39 +1,31 @@
 #include <bits/stdc++.h>
 using namespace std;
+bool compare_function(string &s1, string &s2)
+{
+    return (s1.length() > s2.length());
+}
 int main()
 {
     vector<int> vac{100, 200, 300};
-    vector<int> roll{10000, 20000, 300};
-    vector<string> names{"Shahin", "omi", "Asik"};
     vector<int>::iterator it;
-    vector<string>::iterator n;
-    // vac.insert(0, 500);
-    vac.push_back(10);
-    vac.push_back(20);
-    vac.push_back(30);
-    vac.push_back(40);
 
-    //cout << vac.size();
-    vac.pop_back();
+    // it = vac.begin();
+    // vac.insert(it, 3, 500);
+    // vac.pop_back();
     // for (int i = 0; i < vac.size(); i++)
     // {
     //     cout << vac[i] << " ";
     // }
 
-    cout << names.back();
+    list<string> names{"Shahin", "cat", "Omi", "dog", "Badol", "Ars", "cili"};
+    list<string>::iterator n = names.begin();
 
-    // for (it = vac.begin(); it != vac.end(); it++)
-    // {
-    //     cout << *it << endl;
-    // }
+    // names.insert(n, 2, "Shakil");
 
-    // for (it = roll.begin(); it != roll.end(); it++)
-    // {
-    //     cout << *it << endl;
-    // }
-    // for (n = names.begin(); n != names.end(); n++)
-    // {
-    //     cout << *n << endl;
-    // }
+    names.sort(compare_function);
+    for (n = names.begin(); n != names.end(); n++)
+    {
+        cout << *n << " ";
+    }
     return 0;
 }
