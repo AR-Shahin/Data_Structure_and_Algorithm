@@ -27,14 +27,23 @@ int main()
 {
     int arr[100];
     int n;
-    freopen("./assets/in/input.txt", "r", stdin);
-    // freopen("./assets/out/output.txt", "w", stdout);
-    cin >> n;
-    for (int i = 0; i < n; i++)
+    clock_t t1 = clock();
+    // freopen("./assets/in/input.txt", "r", stdin);
+    // // freopen("./assets/out/output.txt", "w", stdout);
+    // cin >> n;
+    // for (int i = 0; i < n; i++)
+    // {
+    //     cin >> arr[i];
+    // }
+    // Even(arr, n);
+    // Odd(arr, n);
+    for (int i = 0; i < 100000; i++)
     {
-        cin >> arr[i];
+        cout << "-";
     }
-    Even(arr, n);
-    Odd(arr, n);
+    clock_t t2 = clock();
+    double diff = t2 - t1;
+    cout << " " << endl;
+    cout << diff / CLOCKS_PER_SEC;
     return 0;
 }
