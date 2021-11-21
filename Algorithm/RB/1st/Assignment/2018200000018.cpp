@@ -32,19 +32,20 @@ int main()
 
     clock_t t1 = clock();
 
-    int HEIGHT = 2; //declaring
+    int HEIGHT;
 
-    /* Code to read in txt file */
+    // Read Code From input.text file
     ifstream myFile;
     myFile.open("input.txt");
 
     if (!myFile)
     {
-        cerr << "Unable to open file\n"
+        // Exit code
+        cout << "Unable to open file\n"
              << endl;
-        exit(1); // call system to stop
+        exit(1);
     }
-    /* end code read text file */
+
     myFile >> HEIGHT;
     //  cout<< HEIGHT;
     int arr[HEIGHT][WIDTH];
@@ -73,7 +74,7 @@ int main()
     }
     clock_t t2 = clock();
     clock_t t = (t2 - t1) / CLOCKS_PER_SEC;
-    cout << "total time =" << t << endl;
+    cout << "total time =" << t << "s" << endl;
 
     return 0;
 }
