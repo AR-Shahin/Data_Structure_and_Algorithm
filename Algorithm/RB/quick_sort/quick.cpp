@@ -10,8 +10,24 @@ void print_array(int arr[], int n)
         cout << arr[i] << " ";
     }
 }
+int partition_dsc(int arr[], int left, int right)
+{
+    int pivot = arr[left];
+    int i = left;
+    for (int j = left + 1; j <= right; j++)
+    {
+        if (arr[j] > pivot)
+        {
+            i = i + 1;
+            swap(arr[i], arr[j]);
+        }
+    }
 
-int partition(int arr[], int lb, int ub)
+    swap(arr[i], arr[left]);
+
+    return i;
+}
+int partition_asc(int arr[], int lb, int ub)
 {
     int pivot = arr[lb];
     int start = lb;
@@ -41,7 +57,7 @@ void quick_sort(int arr[], int lb, int ub)
 {
     if (lb < ub)
     {
-        int loc = partition(arr, lb, ub);
+        int loc = partition_asc(arr, lb, ub);
         quick_sort(arr, lb, loc - 1);
         quick_sort(arr, loc + 1, ub);
     }
