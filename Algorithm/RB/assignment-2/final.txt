@@ -1,5 +1,5 @@
 Input 1 :
-Bubble sort : ASC = 0S DSC = 0S
+Bubble sort : ASC = 58S DSC = 59S
 Merge sort : ASC = 0S DSC = 0S
-Quick sort : ASC = 0S DSC = 0S
-Best Sorting : ASC = Bubble Sort DSC = Bubble Sort
+Quick sort : ASC = 6S DSC = 23S
+Best Sorting : ASC = Merge Sort DSC = Merge Sort

@@ -2,6 +2,7 @@
     "files.associations": {
         "*.html": "jinja",
         "fstream": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "iostream": "cpp"
     }
 }

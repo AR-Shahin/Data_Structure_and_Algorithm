@@ -163,117 +163,108 @@ void quick_sort_dsc(int arr[], int lb, int ub)
     }
 }
 
-void merge_asc(int A[], int lb, int mid, int ub)
+void merge_asc(int arr[], int l, int m, int r)
 {
-    int i = lb;
-    int j = mid + 1;
-    int k = lb;
+    int n1 = m - l + 1;
+    int n2 = r - m;
+    int L[n1], R[n2];
 
-    while (i <= mid && j <= ub)
+    for (int i = 0; i < n1; i++)
+        L[i] = arr[l + i];
+    for (int j = 0; j < n2; j++)
+        R[j] = arr[m + 1 + j];
+
+    int i = 0, j = 0, k = l;
+
+    while (i < n1 && j < n2)
     {
-        if (A[i] <= A[j])
+        if (L[i] <= R[j])
         {
-            B[k] = A[i];
+            arr[k] = L[i];
             i++;
         }
         else
         {
-            B[k] = A[j];
+            arr[k] = R[j];
             j++;
         }
         k++;
     }
-
-    if (i > mid)
+    while (i < n1)
     {
-        while (j <= ub)
-        {
-            B[k] = A[j];
-            j++;
-            k++;
-        }
+        arr[k] = L[i];
+        i++;
+        k++;
     }
-    else
+    while (j < n2)
     {
-        while (i <= mid)
-        {
-            B[k] = A[i];
-            i++;
-            k++;
-        }
-    }
-
-    for (int k = lb; k <= ub; k++)
-    {
-        A[k] = B[k];
+        arr[k] = R[j];
+        j++;
+        k++;
     }
 }
-void merge_dsc(int A[], int lb, int mid, int ub)
-{
-    int i = lb;
-    int j = mid + 1;
-    int k = lb;
 
-    while (i <= mid && j <= ub)
+void merge_sort_asc(int arr[], int l, int r)
+{
+    if (l >= r)
+        return;
+
+    int m = (l + r - 1) / 2;
+    merge_sort_asc(arr, l, m);
+    merge_sort_asc(arr, m + 1, r);
+    merge_asc(arr, l, m, r);
+}
+
+void merge_dsc(int arr[], int l, int m, int r)
+{
+    int n1 = m - l + 1;
+    int n2 = r - m;
+    int L[n1], R[n2];
+
+    for (int i = 0; i < n1; i++)
+        L[i] = arr[l + i];
+    for (int j = 0; j < n2; j++)
+        R[j] = arr[m + 1 + j];
+
+    int i = 0, j = 0, k = l;
+
+    while (i < n1 && j < n2)
     {
-        if (A[i] >= A[j])
+        if (L[i] > R[j])
         {
-            B[k] = A[i];
+            arr[k] = L[i];
             i++;
         }
         else
         {
-            B[k] = A[j];
+            arr[k] = R[j];
             j++;
         }
         k++;
     }
-
-    if (i > mid)
+    while (i < n1)
     {
-        while (j <= ub)
-        {
-            B[k] = A[j];
-            j++;
-            k++;
-        }
+        arr[k] = L[i];
+        i++;
+        k++;
     }
-    else
+    while (j < n2)
     {
-        while (i <= mid)
-        {
-            B[k] = A[i];
-            i++;
-            k++;
-        }
-    }
-
-    for (int k = lb; k <= ub; k++)
-    {
-        A[k] = B[k];
+        arr[k] = R[j];
+        j++;
+        k++;
     }
 }
 
-void merge_sort_asc(int A[], int lb, int ub)
+void merge_sort_dsc(int arr[], int l, int r)
 {
-    if (lb < ub)
-    {
-        int mid = (lb + ub) / 2;
-        merge_sort_asc(A, lb, mid);
-        merge_sort_asc(A, mid + 1, ub);
-        merge_asc(A, lb, mid, ub);
-    }
-}
+    if (l >= r)
+        return;
 
-void merge_sort_dsc(int A[], int lb, int ub)
-{
-    if (lb < ub)
-    {
-        int mid = (lb + ub) / 2;
-        merge_sort_dsc(A, lb, mid);
-        merge_sort_dsc(A, mid + 1, ub);
-        merge_dsc(A, lb, mid, ub);
-    }
+    int m = (l + r - 1) / 2;
+    merge_sort_dsc(arr, l, m);
+    merge_sort_dsc(arr, m + 1, r);
+    merge_dsc(arr, l, m, r);
 }
 int main()
 {
@@ -281,8 +272,8 @@ int main()
     double F1Asc[10];
     double F1Dsc[10];
     ifstream myFile;
-    myFile.open("input1.txt");
-    // myFile.open("i3.txt");
+    // myFile.open("input1.txt");
+    myFile.open("i3.txt");
 
     int n1;
     myFile >> n1;
@@ -306,7 +297,7 @@ int main()
         cout << A[i] << "\t";
     }
 
-    // ------------------------ Bubble Sort Asc End : -----------------------------------------------
+    // ---- Bubble Sort Asc End : ---
 
     // Bubble Sort Dsc Start
     clock_t bbDscClockStart = clock();
@@ -320,7 +311,7 @@ int main()
         cout << A[i] << "\t";
     }
 
-    // ------------------------ Bubble Sort Asc End : -------------------------------------
+    // ----- Bubble Sort Dsc End : -----
 
     // Merge Sort ASC Start
     clock_t mgAscClockStart = clock();
@@ -334,7 +325,7 @@ int main()
         cout << A[i] << "\t";
     }
 
-    // ------------------------ Merge Sort Asc End : -----------------------------------------------
+    // ------- Merge Sort Asc End : --------------
 
     // Merge Sort DSC Start
     clock_t mgDscClockStart = clock();
@@ -348,7 +339,7 @@ int main()
         cout << A[i] << "\t";
     }
 
-    // ------------------------ Quick Sort Dsc End : -----------------------------------------------
+    // ------- Quick Sort Dsc End : -----------------
 
     // Quick Sort ASC Start
     clock_t qsAscClockStart = clock();
@@ -362,7 +353,7 @@ int main()
         cout << A[i] << "\t";
     }
 
-    // ------------------------ Quick Sort Asc End : -----------------------------------------------
+    // ------------- Quick Sort Asc End : -----
 
     // Quick Sort DSC Start
     clock_t qsDscClockStart = clock();
@@ -376,9 +367,11 @@ int main()
         cout << A[i] << "\t";
     }
 
-    // ------------------------ Quick Sort Dsc End : -----------------------------------------------
-    int x[] = {-7, 8, 10};
-    // Final Result :
+    // ------------- Quick Sort Dsc End : -----------
+
+    // int x[] = {-7, 8, 10};
+    //  Final Result :
+
     freopen("final.txt", "w", stdout);
     cout << "Input 1 :" << endl;
     cout << "Bubble sort : ASC = " << bbAscTime << "S DSC = " << bbDscTime << "S" << endl;
@@ -386,5 +379,6 @@ int main()
     cout << "Quick sort : ASC = " << qsAscTime << "S DSC = " << qsDscTime << "S" << endl;
     cout << "Best Sorting : ASC = " << get_best_result(F1Asc, 3) << " Sort DSC = " << get_best_result(F1Dsc, 3) << " Sort";
     // cout << get_best_result(x, 4);
+
     return 0;
 }
