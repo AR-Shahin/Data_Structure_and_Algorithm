@@ -1,19 +1,19 @@
 Input 1 :
-Bubble sort : ASC = 42S DSC = 60S
-Merge sort : ASC = 0S DSC = 0S
-Quick sort : ASC = 6S DSC = 21S
-Best Sorting : ASC = Merge Sort DSC = Merge Sort
-
----------------------
-Input 2 :
-Bubble sort : ASC = 0S DSC = 60S
+Bubble sort : ASC = 39S DSC = 59S
 Merge sort : ASC = 0S DSC = 0S
 Quick sort : ASC = 6S DSC = 23S
 Best Sorting : ASC = Merge Sort DSC = Merge Sort
 
 ---------------------
-Input 3 :
-Bubble sort : ASC = 60S DSC = 61S
+Input 2 :
+Bubble sort : ASC = 0S DSC = 62S
 Merge sort : ASC = 0S DSC = 0S
-Quick sort : ASC = 5S DSC = 23S
+Quick sort : ASC = 6S DSC = 22S
+Best Sorting : ASC = Merge Sort DSC = Merge Sort
+
+---------------------
+Input 3 :
+Bubble sort : ASC = 59S DSC = 58S
+Merge sort : ASC = 0S DSC = 0S
+Quick sort : ASC = 5S DSC = 20S
 Best Sorting : ASC = Merge Sort DSC = Merge Sort

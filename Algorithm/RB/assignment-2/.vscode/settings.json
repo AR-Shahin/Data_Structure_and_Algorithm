@@ -3,6 +3,7 @@
         "*.html": "jinja",
         "fstream": "cpp",
         "iosfwd": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "ostream": "cpp"
     }
 }
