@@ -1,12 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define WIDTH 2
 int HEIGHT;
+
 struct item
 {
     double weight, profit, unit;
 };
+struct solution
+{
+    int pos;
+    double weight, profit;
+};
+
 item temp[100];
+solution final[100];
 
 int position(item val)
 {
@@ -40,20 +47,16 @@ bool compare(item a, item b)
 {
     return a.unit > b.unit;
 }
-struct solution
-{
-    int pos;
-    double weight, profit;
-};
-solution final[100];
+
 int main()
 {
     int max_weight;
     ifstream myFile;
-    myFile.open("input.txt");
+    myFile.open("i.txt");
     myFile >> HEIGHT >> max_weight;
 
     item A[HEIGHT];
+    // Read Data from file
     for (int i = 0; i < HEIGHT; i++)
     {
         myFile >> A[i].weight >> A[i].profit;
@@ -61,25 +64,16 @@ int main()
     }
     myFile.close();
 
+    // Copy all value in temp
     for (int i = 0; i < HEIGHT; i++)
     {
         temp[i] = A[i];
     }
 
     freopen("output.txt", "w", stdout);
-    for (int i = 0; i < HEIGHT; i++)
-    {
-        cout << A[i].weight << " ";
-        cout << A[i].profit << " ";
-        cout << A[i].unit << "\n";
-    }
-    // cout << "-------Before Sorting--------" << endl;
-    // for (int i = 0; i < HEIGHT; i++)
-    // {
-    //     cout << "W :" << A[i].weight << " P:" << A[i].profit << " U:" << A[i].unit << "\n";
-    // }
+
     bubble_sort_dsc(A, HEIGHT);
-    // sort(&A[0], &A[HEIGHT], compare);
+
     int profit = 0;
     int k = 0;
     for (int i = 0; i < HEIGHT; i++)
@@ -109,17 +103,12 @@ int main()
             max_weight = 0;
         }
     }
-    // cout << "-------After Sorting--------" << endl;
-    // for (int i = 0; i < HEIGHT; i++)
-    // {
-    //     cout << "W :" << A[i].weight << " P:" << A[i].profit << " U:" << A[i].unit << "\n";
-    // }
-    cout << "---------------" << endl;
-    cout << profit;
-    cout << "\n---------------" << endl;
+
+    cout << "Profit : " << profit << endl;
+
     for (int i = 0; i < k; i++)
     {
-        cout << "Item " << final[i].pos << " : W->" << final[i].weight << " P->" << final[i].profit << endl;
+        cout << "Item - " << final[i].pos << " : " << final[i].weight << " = " << final[i].profit << endl;
     }
     return 0;
 }
