@@ -1,6 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 int A[100], n = 0;
+void my_swap(int *a, int *b)
+{
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
 int parent(int i)
 {
     return i / 2;
@@ -23,7 +29,7 @@ void min_heap_insert(int val)
         int p = parent(i);
         if (A[p] > A[i])
         {
-            swap(A[p], A[i]);
+            my_swap(&A[p], &A[i]);
             i = p;
         }
         else
@@ -42,7 +48,7 @@ void max_heap_insert(int val)
         int p = parent(i);
         if (A[p] < A[i])
         {
-            swap(A[p], A[i]);
+            my_swap(&A[p], &A[i]);
             i = p;
         }
         else
@@ -81,12 +87,12 @@ int delete_max_heap()
         int r = right(i);
         if (A[i] < A[l])
         {
-            swap(A[i], A[l]);
+            my_swap(&A[i], &A[l]);
             i = l;
         }
         else if (A[i] < A[r])
         {
-            swap(A[i], A[l]);
+            my_swap(&A[i], &A[l]);
             i = r;
         }
         else
@@ -115,12 +121,12 @@ int delete_min_heap()
         int r = right(i);
         if (A[i] > A[l])
         {
-            swap(A[i], A[l]);
+            my_swap(&A[i], &A[l]);
             i = l;
         }
         else if (A[i] > A[r])
         {
-            swap(A[i], A[l]);
+            my_swap(&A[i], &A[l]);
             i = r;
         }
         else
@@ -137,6 +143,8 @@ int peek()
 }
 int main()
 {
+    print_heap(A, n);
+
     int arr[] = {1,
                  3,
                  5,
@@ -144,10 +152,10 @@ int main()
                  6};
     for (int i = 0; i < 5; i++)
     {
-        max_heap_insert(arr[i]);
+        min_heap_insert(arr[i]);
     }
     print_heap(A, n);
-    cout << delete_max_heap();
+    // cout << delete_max_heap();
     print_heap(A, n);
     return 0;
 }
