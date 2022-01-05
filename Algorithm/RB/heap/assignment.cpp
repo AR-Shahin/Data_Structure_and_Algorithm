@@ -19,25 +19,7 @@ int right(int i)
 {
     return (2 * i) + 1;
 }
-void min_heap_insert(int val)
-{
-    n = n + 1;
-    A[n] = val;
-    int i = n;
-    while (i > 1)
-    {
-        int p = parent(i);
-        if (A[p] > A[i])
-        {
-            my_swap(&A[p], &A[i]);
-            i = p;
-        }
-        else
-        {
-            break;
-        }
-    }
-}
+
 void max_heap_insert(int val)
 {
     n = n + 1;
@@ -104,39 +86,6 @@ int delete_max_heap()
     return val;
 }
 
-int delete_min_heap()
-{
-    if (n == 0)
-    {
-        return -1;
-    }
-    int val = A[1];
-    int temp = A[n];
-    n--;
-    int i = 1;
-    A[i] = temp;
-    while (i < n)
-    {
-        int l = left(i);
-        int r = right(i);
-        if (A[i] > A[l])
-        {
-            my_swap(&A[i], &A[l]);
-            i = l;
-        }
-        else if (A[i] > A[r])
-        {
-            my_swap(&A[i], &A[l]);
-            i = r;
-        }
-        else
-        {
-            break;
-        }
-    }
-
-    return val;
-}
 int peek()
 {
     if (n == 0)
@@ -180,7 +129,16 @@ int main()
             print_heap(A, n);
             break;
         case 3:
-            cout << "Deleted Data : " << delete_max_heap() << endl;
+            int data;
+            data = delete_max_heap();
+            if (data == -1)
+            {
+                cout << "Empty Heap!";
+            }
+            else
+            {
+                cout << "Deleted Data : " << data << endl;
+            }
             break;
         case 4:
             cout << "Game Over!";
