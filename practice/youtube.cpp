@@ -2,38 +2,63 @@
 using namespace std;
 #define size 5
 string Queue[size];
-int front, rear;
+int front, rear, i;
+string x;
 
 void init()
 {
-    front = rear = 0;
+    front = rear = -1;
 }
 
 void enqueue(string data)
 {
-    if (rear < size)
+    if (front == -1 && rear == -1)
     {
+        front = rear = 0;
+
         Queue[rear] = data;
-        rear++;
+    }
+    else if ((rear + 1) % size == front)
+    {
+        cout << "\nQueue is Full";
     }
     else
     {
-        cout << "Queue is Full!\n";
+        rear = (rear + 1) % size;
+        Queue[rear] = data;
     }
 }
 
 void print()
 {
-    for (int i = front; i < rear; i++)
+    i = front;
+    while (i != rear)
     {
         cout << Queue[i] << " ";
+        i = (i + 1) % size;
     }
+
+    cout << Queue[rear];
 }
+
 string dequeue()
 {
-    string data = Queue[front];
-    front++;
-    return data;
+    if (front == -1 && rear == -1)
+    {
+        cout << "\n Empty";
+    }
+    else if (front == rear)
+    {
+        x = Queue[front];
+        front = rear = -1;
+    }
+    else
+    {
+        x = Queue[front];
+        front = (front + 1) % size;
+    }
+
+    return x;
 }
 int main()
 {
@@ -43,15 +68,17 @@ int main()
     enqueue("Tanzim");
     enqueue("Nasif");
     enqueue("Tamanna");
-    enqueue("Kaberi");
     print();
     cout << endl;
     cout << dequeue();
     cout << endl;
     cout << dequeue();
-    cout << endl;
 
     print();
     cout << endl;
+    enqueue("Kaberi");
+    cout << endl;
+    print();
+
     return 0;
 }
