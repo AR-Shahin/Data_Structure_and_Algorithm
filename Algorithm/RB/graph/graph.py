@@ -1,5 +1,4 @@
 
-
 class Graph:
     def __init__(self, nodes, is_directed=False):
         self.is_directed = is_directed
