@@ -1,11 +1,34 @@
 
-
 from queue import Queue
 
 
-class BFS:
-    def __init__(self, adj_list):
-        self.adj_list = adj_list
+class Graph:
+    def __init__(self, nodes, is_directed=False):
+        self.is_directed = is_directed
+        self.nodes = nodes
+        self.adj_list = {}
+
+        for node in self.nodes:
+            self.adj_list[node] = []
+
+    def print_adj_list(self):
+        for node in self.nodes:
+            print("{} -> {}".format(node, self.adj_list[node]))
+
+    def add_edge(self, u, v):
+        self.adj_list[u].append(v)
+        if not self.is_directed:
+            self.adj_list[v].append(u)
+
+    def add_multiple_edges(self, edges):
+        for u, v in edges:
+            self.add_edge(u, v)
+
+
+class BFS(Graph):
+    def __init__(self, nodes, edges, is_directed=False):
+        super().__init__(nodes, is_directed)
+        self.add_multiple_edges(edges)
         self.visited = {}
         self.level = {}
         self.parent = {}
@@ -48,25 +71,18 @@ class BFS:
         return path
 
 
-# adj_list = {
-#     "A": ["B", "D"],
-#     "B": ["A", "C"],
-#     "C": ["B"],
-#     "D": ["A", "E", "F"],
-#     "E": ["D", "F", "G"],
-#     "F": ["D", "E", "H"],
-#     "G": ["E", "H"],
-#     "H": ["G", "F"]
-# }
-
-rb = {
-    "1": ["2", "3", "4"],
-    "2": ["1", "3", "5"],
-    "3": ["5", "2", "4", "1"],
-    "4": ["1", "3", "5"],
-    "5": ["4", "3", "2"],
-}
-bfs = BFS(rb)
+nodes = ["1", "2", "3", "4", "5"]
+edges = [
+    ("1", "3"),
+    ("1", "2"),
+    ("1", "4"),
+    ("2", "3"),
+    ("2", "5"),
+    ("3", "4"),
+    ("3", "5"),
+    ("4", "5"),
+]
+bfs = BFS(nodes, edges)
 
 
 source = input("Enter Source : ")
