@@ -26,16 +26,15 @@ class Graph:
 
 
 nodes = ["A", "B", "C", "D", "E"]
-edges = [
-    ("A", "C"),
-    ("A", "B"),
-    ("B", "D"),
-    ("C", "D"),
-    ("C", "E"),
-    ("D", "E"),
-]
-graph = Graph(nodes)
+# edges = [
+#     ("A", "C"),
+#     ("A", "B"),
+#     ("B", "D"),
+#     ("C", "D"),
+#     ("C", "E"),
+#     ("D", "E"),
+# ]
+# graph = Graph(nodes)
 
-graph.add_multiple_edges(edges)
+# graph.add_multiple_edges(edges)
 # graph.print_adj_list()
-print(type(graph.adj_list))

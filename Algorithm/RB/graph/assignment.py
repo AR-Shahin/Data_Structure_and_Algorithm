@@ -89,5 +89,5 @@ source = input("Enter Source : ")
 print(bfs.bfs_traversal(source))
 destination = input("Enter Destination : ")
 
-print(bfs.level_of_node(destination))
 print(bfs.print_path(destination))
+print(bfs.level_of_node(destination))

@@ -1,4 +1,5 @@
 
+from operator import le
 from graph import Graph
 from queue import Queue
 
@@ -48,33 +49,47 @@ class BFS(Graph):
         return path
 
 
-nodes = ["1", "2", "3", "4", "5"]
-edges = [
-    ("1", "3"),
-    ("1", "2"),
-    ("1", "4"),
-    ("2", "3"),
-    ("2", "5"),
-    ("3", "4"),
-    ("3", "5"),
-    ("4", "5"),
-]
-
+# nodes = ["1", "2", "3", "4", "5"]
 # edges = [
-#     ("A", "B"),
-#     ("B", "C"),
-#     ("A", "D"),
-#     ("D", "E"),
-#     ("D", "F"),
-#     ("E", "F"),
-#     ("E", "G"),
-#     ("F", "H"),
-#     ("G", "H")
+#     ("1", "3"),
+#     ("1", "2"),
+#     ("1", "4"),
+#     ("2", "3"),
+#     ("2", "5"),
+#     ("3", "4"),
+#     ("3", "5"),
+#     ("4", "5"),
 # ]
+
+nodes = ["A", "B", "C", "D", "E", "F", "G", "H"]
+edges = [
+    ("A", "B"),
+    ("B", "C"),
+    ("A", "D"),
+    ("D", "E"),
+    ("D", "F"),
+    ("E", "F"),
+    ("E", "G"),
+    ("F", "H"),
+    ("G", "H")
+]
 bfs = BFS(nodes, edges)
 
-print(bfs.bfs_traversal("1"))
+# print(bfs.bfs_traversal("A"))
 
-print(bfs.level_of_node("5"))
+# # print(bfs.level_of_node("5"))
 
-print(bfs.print_path("5"))
+# print(bfs.print_path("E"))
+str = """
+    When a vehicle collides with another in the road is called road accident. It is a common phenomenon is our country. Road accident is increasing by leaps and bounds day by day. It is the most gruesome of the daily occurrences. 
+
+Present condition of road accident in Bangladesh
+Reasons and Preventions 
+
+Road accidents occurs in Bangladesh primarily owing to the reckless driving of the drivers. They often go almost mad to overtake without caring for traffic rules and regulations. 
+Furthermore, when inexperienced and untrained drivers drive, there occur road accidents. Carelessness of the pedestrians is also one of the major causes of the road accidents. They often avoided over bridge and footpath use main road while crossing the road,use mobile phone while moving,do not follow traffic rules. 
+The government and the law efforcing agencies must be stmict to enforce the traffic rules. Separate lanes should be built we all should.
+
+"""
+
+print(len(str.split()))
