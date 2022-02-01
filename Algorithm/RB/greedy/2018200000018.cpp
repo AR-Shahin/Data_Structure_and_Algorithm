@@ -52,7 +52,7 @@ int main()
 {
     int max_weight;
     ifstream myFile;
-    myFile.open("i.txt");
+    myFile.open("input.txt");
     myFile >> HEIGHT >> max_weight;
 
     item A[HEIGHT];
