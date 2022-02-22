@@ -17,15 +17,23 @@ int main()
     //     cout << vac[i] << " ";
     // }
 
-    list<string> names{"Shahin", "cat", "Omi", "dog", "Badol", "Ars", "cili"};
+    list<string> names{"Shahin", "cat", "Omi", "dog"};
+    list<string> emails{"S", "C", "Omi", "dog"};
     list<string>::iterator n = names.begin();
 
     // names.insert(n, 2, "Shakil");
 
-    names.sort(compare_function);
-    for (n = names.begin(); n != names.end(); n++)
+    // names.sort(compare_function);
+    // for (n = names.begin(); n != names.end(); n++)
+    // {
+    //     cout << *n << " ";
+    // }
+    // advance(n, 2);
+    // names.insert(n, "Kani");
+    for (auto name : names)
     {
-        cout << *n << " ";
+        cout << name << " ";
     }
+
     return 0;
 }

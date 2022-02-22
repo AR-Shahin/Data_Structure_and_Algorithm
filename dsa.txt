@@ -1,0 +1,39 @@
+Intro
+Structure 
+Recursion 
+Pointer
+Max and min
+Remove duplicate 
+Merge two array
+Stack 
+Queue
+Circular Queue
+Linklist  - insert, display 
+Linklist - insert position 
+L - Delete 
+L - update,search 
+L - Stack
+L - Queue
+Doubly Linklist
+DL- insert position 
+DL - Delete 
+DL - update,search
+Binary tree
+Bubble sort 
+Selection Sort
+Insertion Sort
+Quick Sort
+Merge Sort 
+Linear Search 
+Binary Search 
+Interpolation Search 
+Greedy Algorithm
+
+
+
+
+
+
+
+
+

@@ -35,17 +35,9 @@ class DetectCycle(Graph):
 
     def print_cycle_path(self):
         if self.is_cycle:
-            return self.output[:-1]
+            return self.output
 
 
-nodes = ["A", "B", "C", "D", "E"]
-edges = [
-    ("A", "C"),
-    ("A", "B"),
-    ("B", "D"),
-    ("D", "A"),
-    ("D", "E"),
-]
 # edges = [
 #     ("A", "B"),
 #     ("C", "B"),
@@ -53,17 +45,30 @@ edges = [
 #     ("D", "E"),
 # ]
 
-directed = [
+undirected = [
     ("A", "B"),
     ("A", "D"),
     ("B", "C"),
     ("C", "D"),
     ("D", "E")
 ]
-dc = DetectCycle(nodes, edges, True)
 
-# dc.print_adj_list()
-dc.detect_cycle("A")
 
+edges = [
+    ("A", "C"),
+    ("A", "B"),
+    ("B", "D"),
+    ("D", "A"),
+    ("D", "E"),
+]
+nodes = ["A", "B", "C", "D", "E"]
+undirected = [
+    ("A", "B"),
+    ("A", "D"),
+    ("B", "C"),
+    ("C", "D"),
+    ("D", "E")
+]
+dc = DetectCycle(nodes, edges, False)
 print(dc.detect_cycle("A"))
 print(dc.print_cycle_path())

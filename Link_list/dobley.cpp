@@ -195,7 +195,7 @@ int main()
     deleteAtPosition(2);
     insertLast(500);
     display();
-    // reverseDisplay();
+    reverseDisplay();
 
     return 0;
 }

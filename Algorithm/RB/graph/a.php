@@ -1,23 +1,15 @@
 <?php
 
-abstract class Model
+class A
 {
-    protected const TABLE_NAME = '';
 
-    public static function all()
+    function __call($mName, $args)
     {
-        return 'SELECT * FROM ' . static::TABLE_NAME;
+        echo "{$mName}'s args are {$args[0]}";
     }
 }
 
-class User extends Model
-{
-    protected const TABLE_NAME = 'users';
-}
 
-class Role extends Model
-{
-    protected const TABLE_NAME = 'roles';
-}
+$ob = new A();
 
-echo User::all(); // SELECT * FROM users;
+$ob->unknownMethod(10);

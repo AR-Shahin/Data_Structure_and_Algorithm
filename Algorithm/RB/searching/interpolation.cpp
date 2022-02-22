@@ -24,7 +24,7 @@ int main()
 {
     int A[] = {-8, -1, 5, 9, 10, 17, 18, 25, 36};
     int n = 9;
-    int val = -8;
+    int val = -80;
     int pos = interpolation_search(A, 0, n - 1, val);
     cout << pos;
     return 0;

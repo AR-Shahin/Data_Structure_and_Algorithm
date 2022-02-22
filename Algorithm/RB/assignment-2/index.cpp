@@ -339,7 +339,7 @@ int main()
         cout << A[i] << "\t";
     }
 
-    // ------- Quick Sort Dsc End : -----------------
+    // ------- Merge Sort Dsc End : -----------------
 
     // Quick Sort ASC Start
     clock_t qsAscClockStart = clock();
@@ -440,7 +440,7 @@ int main()
         cout << C[i] << "\t";
     }
 
-    // ------- Quick Sort Dsc End : -----------------
+    // ------- Merge Sort Dsc End : -----------------
 
     // Quick Sort ASC Start
     clock_t F2_qsAscClockStart = clock();
@@ -539,7 +539,7 @@ int main()
         cout << D[i] << "\t";
     }
 
-    // ------- Quick Sort Dsc End : -----------------
+    // ------- Merge Sort Dsc End : -----------------
 
     // Quick Sort ASC Start
     clock_t F3_qsAscClockStart = clock();
@@ -577,14 +577,14 @@ int main()
     cout << "Bubble sort : ASC = " << bbAscTime << "S DSC = " << bbDscTime << "S" << endl;
     cout << "Merge sort : ASC = " << mgAscTime << "S DSC = " << mgDscTime << "S" << endl;
     cout << "Quick sort : ASC = " << qsAscTime << "S DSC = " << qsDscTime << "S" << endl;
-    cout << "Best Sorting : ASC = " << get_best_result(F1Asc, 3) << " Sort DSC = " << get_best_result(F1Dsc, 3) << " Sort";
+    cout << "Best Sorting : ASC = " << get_best_result(F1Asc, 3) << " Sort ,  DSC = " << get_best_result(F1Dsc, 3) << " Sort";
     cout << endl;
     cout << "\n---------------------" << endl;
     cout << "Input 2 :" << endl;
     cout << "Bubble sort : ASC = " << F2_bbAscTime << "S DSC = " << F2_bbDscTime << "S" << endl;
     cout << "Merge sort : ASC = " << F2_mgAscTime << "S DSC = " << F2_mgDscTime << "S" << endl;
     cout << "Quick sort : ASC = " << F2_qsAscTime << "S DSC = " << F2_qsDscTime << "S" << endl;
-    cout << "Best Sorting : ASC = " << get_best_result(F2Asc, 3) << " Sort DSC = " << get_best_result(F2Dsc, 3) << " Sort";
+    cout << "Best Sorting : ASC = " << get_best_result(F2Asc, 3) << " Sort , DSC = " << get_best_result(F2Dsc, 3) << " Sort";
     cout << endl;
     cout << "\n---------------------" << endl;
 
@@ -592,7 +592,7 @@ int main()
     cout << "Bubble sort : ASC = " << F3_bbAscTime << "S DSC = " << F3_bbDscTime << "S" << endl;
     cout << "Merge sort : ASC = " << F3_mgAscTime << "S DSC = " << F3_mgDscTime << "S" << endl;
     cout << "Quick sort : ASC = " << F3_qsAscTime << "S DSC = " << F3_qsDscTime << "S" << endl;
-    cout << "Best Sorting : ASC = " << get_best_result(F3Asc, 3) << " Sort DSC = " << get_best_result(F3Dsc, 3) << " Sort";
+    cout << "Best Sorting : ASC = " << get_best_result(F3Asc, 3) << " Sort , DSC = " << get_best_result(F3Dsc, 3) << " Sort";
     // cout << get_best_result(x, 4);
 
     return 0;

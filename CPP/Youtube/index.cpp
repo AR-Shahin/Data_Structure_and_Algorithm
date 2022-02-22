@@ -1,84 +1,64 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define max_size 5
+#define size 5
 
-string names[max_size];
-int len = 0;
+int Stack[size];
+int top = 0;
 
-void insert(string name)
+void push(int val)
 {
-    if (len < max_size)
+    if (top < size)
     {
-        names[len] = name;
-        len++;
+        Stack[top] = val;
+        top++;
     }
     else
     {
-        cout << "\nList is full\n";
+        cout << "\nStack is Full" << endl;
     }
 }
-
-void print_data(string A[], int n)
+void display()
 {
-    cout << endl;
-    for (int i = 0; i < n; i++)
+    for (int i = top - 1; i >= 0; i--)
     {
-        cout << names[i] << " ";
+        cout << Stack[i] << " ";
     }
 }
 
-int search(string name)
+int pop()
 {
-    for (int i = 0; i < len; i++)
-    {
-        if (names[i] == name)
-        {
-            return i;
-        }
-    }
-
-    return -1;
+    int temp = Stack[top - 1];
+    top--;
+    return temp;
 }
 
-void update(string oldData, string newData)
+int peek()
 {
-    int index = search(oldData);
-    names[index] = newData;
+    int temp = Stack[top - 1];
+    return temp;
 }
 
-void delete_data()
+int length_of_stack()
 {
-    len--;
-}
-
-void insert_at(string name, int pos)
-{
-    if (pos >= max_size)
-    {
-        cout << "\nInvalid Postion\n";
-    }
-    else
-    {
-        names[pos] = name;
-    }
+    return top;
 }
 int main()
 {
-    insert("Shahin");
-    insert("Asik");
-    insert("Tanzim");
-    insert("Omi");
-    insert("Nasif");
-    // insert("Tamanna ");
-    print_data(names, len);
-    // cout << endl;
-    // // cout << search("Tanzim");
-    // update("Omi", "Tamanna");
-    // print_data(names, len);
-    // delete_data();
-    // print_data(names, len);
-    insert_at("Ars", 0);
-    print_data(names, len);
-
+    push(10);
+    push(20);
+    push(30);
+    push(40);
+    push(50);
+    display();
+    cout << endl;
+    cout << pop();
+    cout << " ";
+    cout << pop();
+    cout << endl;
+    display();
+    cout << "\n";
+    cout << "Peek " << peek() << endl;
+    pop();
+    cout << "Length of Stack " << length_of_stack();
     return 0;
 }
