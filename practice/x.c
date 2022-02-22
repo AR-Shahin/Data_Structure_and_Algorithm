@@ -27,18 +27,18 @@ int main()
         space = n - row;
         for (col = 1; col <= space; col++)
         {
-            printf(" ");
+            cout << " ";
         }
         star = 2 * row - 1;
         for (col = 1; col <= star; col++)
         {
             if (row == 1 || col == 1 || col == star)
             {
-                printf("*");
+                cout << "*";
             }
             else
-                printf(" ");
+                cout << " ";
         }
-        printf("\n");
+        cout << "\n";
     }
 }
